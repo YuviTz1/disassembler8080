@@ -83,4 +83,39 @@ mod tests {
         let buffer = vec![0x3e, 0x10];
         assert_eq!(disassemble(&buffer), "MVI\tA, $10\n");
     }
+    #[test]
+    fn test_0xc2() {
+        let buffer = vec![0xc2, 0x10,0xe7];
+        assert_eq!(disassemble(&buffer), "JNZ\t$e710\n");
+    }
+    #[test]
+    fn test_0xc4() {
+        let buffer = vec![0xc4, 0x10,0xe7];
+        assert_eq!(disassemble(&buffer), "CNZ\t$e710\n");
+    }
+    #[test]
+    fn test_0xc6() {
+        let buffer = vec![0xc6, 0x10];
+        assert_eq!(disassemble(&buffer), "ADI\t$10\n");
+    }
+    #[test]
+    fn test_0xca() {
+        let buffer = vec![0xca, 0x10,0xe7];
+        assert_eq!(disassemble(&buffer), "JZ\t$e710\n");
+    }
+    #[test]
+    fn test_0xcc() {
+        let buffer = vec![0xcc, 0x10,0xe7];
+        assert_eq!(disassemble(&buffer), "CZ\t$e710\n");
+    }
+    #[test]
+    fn test_0xcd() {
+        let buffer = vec![0xcd, 0x10,0xe7];
+        assert_eq!(disassemble(&buffer), "CALL\t$e710\n");
+    }
+    #[test]
+    fn test_0xce() {
+        let buffer = vec![0xce, 0xe7];
+        assert_eq!(disassemble(&buffer), "ACI\t$e7\n");
+    }
 }
